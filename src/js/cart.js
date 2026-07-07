@@ -4,8 +4,21 @@ function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  renderCartTotal(cartItems);
 }
+// add new function to render cart total if cartItems is not empty, otherwise hide the cart total
+function renderCartTotal(cartItems) {
+  const cartFooter = document.querySelector(".cart-footer");
+  const cartTotal = document.querySelector(".cart-total");
 
+  if (cartItems.length > 0) {
+    const total = cartItems.reduce((sum, item) => sum + item.FinalPrice, 0);
+    cartTotal.innerHTML = `Total: $${total.toFixed(2)}`;
+    cartFooter.classList.remove("hide");
+  } else {
+    cartFooter.classList.add("hide");
+  }
+}
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">

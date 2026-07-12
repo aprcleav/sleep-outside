@@ -208,11 +208,25 @@ button {
 }
 
 /* Start cart list card styles */
+
+/* Add styles for remove from cart button */
+.remove-button {
+  grid-column: 3/4;
+  grid-row: 1/2;
+  background-color: #fff;
+  color: var(--secondary-color);
+}
+
+.remove-button:hover {
+  color: var(--tertiary-color);
+}
+
 .cart-card {
   display: grid;
   grid-template-columns: 25% auto 15%;
   font-size: var(--small-font);
   /* max-height: 120px; */
+  max-width: 600px;
   align-items: center;
 }
 
@@ -236,7 +250,7 @@ button {
 }
 
 .cart-card__quantity {
-  grid-row: 1;
+  grid-row: 3;
   grid-column: 3;
 }
 

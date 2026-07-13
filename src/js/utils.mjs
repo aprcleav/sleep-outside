@@ -39,3 +39,28 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
 
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
+
+export function updateCartCount() {
+  const cartItems = getLocalStorage("so-cart") || [];
+  const count = cartItems.length;
+
+  const cart = qs(".cart");
+
+  let badge = cart.querySelector(".cart-count");
+
+  if (!badge) {
+    badge = document.createElement("span");
+    badge.classList.add("cart-count");
+    cart.appendChild(badge);
+  }
+
+  badge.textContent = count;
+
+  if (count === 0) {
+    badge.style.display = "none";
+  } else {
+    badge.style.display = "flex";
+  }
+
+  console.log(`Cart contains ${count} item(s).`);
+}

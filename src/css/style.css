@@ -90,7 +90,7 @@ p {
   margin-top: -1.3em;
 }
 
-.logo--square > div {
+.logo--square>div {
   margin-top: -1.7em;
 }
 
@@ -316,4 +316,16 @@ button {
 footer {
   font-size: var(--small-font);
   padding: 1em;
+}
+
+
+.product-detail__discount {
+  color: #d62828;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.product-detail__original-price {
+  color: #666;
+  text-decoration: line-through;
 }

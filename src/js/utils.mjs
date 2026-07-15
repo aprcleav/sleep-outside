@@ -25,6 +25,7 @@ export function setClick(selector, callback) {
 export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
+<<<<<<< HEAD
   return urlParams.get(param);
 }
 
@@ -35,14 +36,53 @@ export function renderListWithTemplate(
   position = "afterbegin",
   clear = false
 ) {
+=======
+  const product = urlParams.get("product");
+  return product;
+}
+
+export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false)
+{
+  const htmlStrings = list.map(templateFn);
+  
+>>>>>>> origin/main
   if (clear) {
     parentElement.innerHTML = "";
   }
 
+<<<<<<< HEAD
   const htmlStrings = list.map(templateFn);
 
   parentElement.insertAdjacentHTML(
     position,
     htmlStrings.join("")
   );
+=======
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
+
+export function updateCartCount() {
+  const cartItems = getLocalStorage("so-cart") || [];
+  const count = cartItems.length;
+
+  const cart = qs(".cart");
+
+  let badge = cart.querySelector(".cart-count");
+
+  if (!badge) {
+    badge = document.createElement("span");
+    badge.classList.add("cart-count");
+    cart.appendChild(badge);
+  }
+
+  badge.textContent = count;
+
+  if (count === 0) {
+    badge.style.display = "none";
+  } else {
+    badge.style.display = "flex";
+  }
+
+  console.log(`Cart contains ${count} item(s).`);
+>>>>>>> origin/main
 }

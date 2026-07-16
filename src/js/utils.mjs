@@ -64,3 +64,33 @@ export function updateCartCount() {
 
   console.log(`Cart contains ${count} item(s).`);
 }
+
+export function renderWithTemplate(template, parentElement, data, callback) {
+
+  parentElement.innerHTML = template;
+  if (callback) {
+    return callback(data);
+  }
+}
+
+async function loadTemplate(path) {
+  
+  const response = await fetch(path);
+  const template = await response.text();
+  return template;
+
+}
+
+export async function loadHeaderFooter() {
+  const headerTemplate = loadTemplate("../partials/header.html");
+  const footerTemplate = loadTemplate("../partials/footer.html")
+
+  const headerElement = document.getElementById("main-header");
+  const footerElement = document.getElementById("main-footer");
+
+  // const cartItems = getLocalStorage("so-cart") || [];
+
+  // ToDO: figure out data and callback
+  renderWithTemplate(headerTemplate, headerElement);
+  renderWithTemplate(footerTemplate, footerElement);
+}

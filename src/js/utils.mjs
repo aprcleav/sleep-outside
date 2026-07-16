@@ -25,32 +25,20 @@ export function setClick(selector, callback) {
 export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-
-  return urlParams.get(param);
-}
-
-export function renderListWithTemplate(
-  templateFn,
-  parentElement,
-  list,
-  position = "afterbegin",
-  clear = false
-) {
   const product = urlParams.get("product");
   return product;
 }
 
+export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false)
+{
   const htmlStrings = list.map(templateFn);
+  
   if (clear) {
     parentElement.innerHTML = "";
   }
 
-
-  parentElement.insertAdjacentHTML(
-    position,
-    htmlStrings.join("")
-  );
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
 
 export function updateCartCount() {
   const cartItems = getLocalStorage("so-cart") || [];
@@ -75,7 +63,4 @@ export function updateCartCount() {
   }
 
   console.log(`Cart contains ${count} item(s).`);
-
 }
-
-

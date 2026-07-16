@@ -85,8 +85,8 @@ export async function loadHeaderFooter() {
   const headerTemplate = loadTemplate("../partials/header.html");
   const footerTemplate = loadTemplate("../partials/footer.html")
 
-  const headerElement = document.getElementById("main-header");
-  const footerElement = document.getElementById("main-footer");
+  const headerElement = document.querySelector("#main-header");
+  const footerElement = document.querySelector("#main-footer");
 
   // const cartItems = getLocalStorage("so-cart") || [];
 

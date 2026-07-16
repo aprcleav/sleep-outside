@@ -2,24 +2,28 @@
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
 }
-// or a more concise version if you are into that sort of thing:
-// export const qs = (selector, parent = document) => parent.querySelector(selector);
 
-// retrieve data from localstorage
 export function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
-// save data to local storage
+
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
-// set a listener for both touchend and click
+
 export function setClick(selector, callback) {
-  qs(selector).addEventListener("touchend", (event) => {
+  const element = qs(selector);
+
+  if (!element) {
+    return;
+  }
+
+  element.addEventListener("touchend", (event) => {
     event.preventDefault();
     callback();
   });
-  qs(selector).addEventListener("click", callback);
+
+  element.addEventListener("click", callback);
 }
 
 export function getParam(param) {
@@ -34,29 +38,28 @@ export function renderListWithTemplate(
   parentElement,
   list,
   position = "afterbegin",
-  clear = false
+  clear = false,
 ) {
-  const product = urlParams.get("product");
-  return product;
-}
+  if (!parentElement) {
+    return;
+  }
 
-  const htmlStrings = list.map(templateFn);
   if (clear) {
     parentElement.innerHTML = "";
   }
 
-
-  parentElement.insertAdjacentHTML(
-    position,
-    htmlStrings.join("")
-  );
+  const htmlStrings = list.map(templateFn);
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
 
 export function updateCartCount() {
   const cartItems = getLocalStorage("so-cart") || [];
   const count = cartItems.length;
-
   const cart = qs(".cart");
+
+  if (!cart) {
+    return;
+  }
 
   let badge = cart.querySelector(".cart-count");
 
@@ -67,15 +70,7 @@ export function updateCartCount() {
   }
 
   badge.textContent = count;
-
-  if (count === 0) {
-    badge.style.display = "none";
-  } else {
-    badge.style.display = "flex";
-  }
-
-  console.log(`Cart contains ${count} item(s).`);
-
+  badge.style.display = count === 0 ? "none" : "flex";
 }
 
 

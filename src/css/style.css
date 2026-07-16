@@ -120,6 +120,19 @@ button {
 
 /* End utility classes */
 
+/* Start category image styles */
+.product-categories {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  place-items: center;
+}
+
+.product-categories img {
+  margin: 40px 0 40px 0;
+}
+/* End category image styles */
+
+
 /* Cart icon styles */
 .cart {
   padding-top: 1em;
@@ -316,4 +329,5 @@ button {
 footer {
   font-size: var(--small-font);
   padding: 1em;
+  text-align: center;
 }

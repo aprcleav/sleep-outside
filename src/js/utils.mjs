@@ -25,7 +25,7 @@ export function setClick(selector, callback) {
 export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const product = urlParams.get("product");
+  const product = urlParams.get(param);
   return product;
 }
 
@@ -65,11 +65,12 @@ export function updateCartCount() {
   console.log(`Cart contains ${count} item(s).`);
 }
 
-export function renderWithTemplate(template, parentElement, data, callback) {
+export function renderWithTemplate(template, parentElement, callback) {
+  // removed the data parameter because we didn't need it for our callback function
 
   parentElement.innerHTML = template;
   if (callback) {
-    return callback(data);
+    return callback();
   }
 }
 
@@ -88,9 +89,6 @@ export async function loadHeaderFooter() {
   const headerElement = document.querySelector("#main-header");
   const footerElement = document.querySelector("#main-footer");
 
-  // const cartItems = getLocalStorage("so-cart") || [];
-
-  // ToDO: figure out data and callback
-  renderWithTemplate(headerTemplate, headerElement);
-  renderWithTemplate(footerTemplate, footerElement);
+  renderWithTemplate(headerTemplate, headerElement, updateCartCount);
+  renderWithTemplate(footerTemplate, footerElement, updateCartCount);
 }

@@ -42,7 +42,8 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
 
 export function updateCartCount() {
   const cartItems = getLocalStorage("so-cart") || [];
-  const count = cartItems.length;
+  // Updated count to work with cart quantity feature. Loops the array and adds each item's quantity to the running total.
+  const count = cartItems.reduce((total, item) => total + (item.quantity || 1), 0);
 
   const cart = qs(".cart");
 

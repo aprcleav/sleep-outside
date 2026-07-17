@@ -22,11 +22,17 @@ export default class ProductDetails {
         document.getElementById("addToCart").addEventListener("click", this.addProductToCart.bind(this));
     }
 
+    // Added a check to see if an item already exists in the cart. If it does, it adds 1 to the quantity. It also adds the quantity to localStorage along with the other product data.
     addProductToCart() {
         const cartItems = getLocalStorage("so-cart") || [];
-        cartItems.push(this.product);
-        setLocalStorage("so-cart", cartItems);
+        const existingItem = cartItems.find((item) => item.Id === this.product.Id);
+        if (existingItem) {
+            existingItem.quantity = (existingItem.quantity || 1) + 1;
+        } else {
+            cartItems.push({ ...this.product, quantity: 1 });
+        }
 
+        setLocalStorage("so-cart", cartItems);
         updateCartCount();
     }
 

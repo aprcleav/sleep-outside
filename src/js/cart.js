@@ -13,10 +13,20 @@ function renderCartContents() {
   document.querySelectorAll(".remove-button").forEach((button) => {
     button.addEventListener("click", () => {
       const itemId = button.dataset.id;
+      let updatedCartItems = [...cartItems];
       // update cart items
-      const updatedCartItems = cartItems.filter(
-        (item) => String(item.Id) !== itemId,
-      );
+      cartItems.forEach((item) => {
+        if (String(item.Id) === itemId) {
+          if (item.quantity > 1) {
+            item.quantity -= 1;
+          } else {
+            updatedCartItems = cartItems.filter(
+              (item) => String(item.Id) !== itemId,
+            );
+          }
+        }
+      });
+      
       setLocalStorage("so-cart", updatedCartItems);
       renderCartContents();
       updateCartCount();
@@ -29,7 +39,7 @@ function renderCartContents() {
     const cartTotal = document.querySelector(".cart-total");
 
     if (cartItems.length > 0) {
-      const total = cartItems.reduce((sum, item) => sum + item.FinalPrice, 0);
+      const total = cartItems.reduce((sum, item) => sum + item.FinalPrice * item.quantity, 0);
       cartTotal.innerHTML = `Total: $${total.toFixed(2)}`;
       cartFooter.classList.remove("hide");
     } else {
@@ -42,7 +52,7 @@ function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Image}"
+      src="${item.Images.PrimarySmall}"
       alt="${item.Name}"
     />
   </a>
@@ -50,7 +60,7 @@ function cartItemTemplate(item) {
     <h2 class="card__name">${item.Name}</h2>
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">qty: 1</p>
+  <p class="cart-card__quantity">qty: ${item.quantity}</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
   <button class="remove-button" data-id="${item.Id}">✕</button>
 </li>`;
@@ -58,5 +68,5 @@ function cartItemTemplate(item) {
   return newItem;
 }
 
-updateCartCount();
 renderCartContents();
+// updateCartCount();

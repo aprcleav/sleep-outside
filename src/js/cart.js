@@ -1,5 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
-import { updateCartCount, loadHeaderFooter } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, updateCartCount, loadHeaderFooter } from "./utils.mjs";
 
 loadHeaderFooter();
 
@@ -15,13 +14,13 @@ function renderCartContents() {
       const itemId = button.dataset.id;
       let updatedCartItems = [...cartItems];
       // update cart items
-      cartItems.forEach((item) => {
-        if (String(item.Id) === itemId) {
-          if (item.quantity > 1) {
-            item.quantity -= 1;
+      cartItems.forEach((cartItem) => {
+        if (String(cartItem.Id) === itemId) {
+          if (cartItem.quantity > 1) {
+            cartItem.quantity -= 1;
           } else {
             updatedCartItems = cartItems.filter(
-              (item) => String(item.Id) !== itemId,
+              (filteredItem) => String(filteredItem.Id) !== itemId,
             );
           }
         }
@@ -34,12 +33,12 @@ function renderCartContents() {
   });
 
   // add new function to render cart total if cartItems is not empty, otherwise hide the cart total
-  function renderCartTotal(cartItems) {
+  function renderCartTotal(currentCartItems) {
     const cartFooter = document.querySelector(".cart-footer");
     const cartTotal = document.querySelector(".cart-total");
 
-    if (cartItems.length > 0) {
-      const total = cartItems.reduce((sum, item) => sum + item.FinalPrice * item.quantity, 0);
+    if (currentCartItems.length > 0) {
+      const total = currentCartItems.reduce((sum, item) => sum + item.FinalPrice * item.quantity, 0);
       cartTotal.innerHTML = `Total: $${total.toFixed(2)}`;
       cartFooter.classList.remove("hide");
     } else {

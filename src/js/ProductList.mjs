@@ -16,16 +16,26 @@ export default class ProductList {
         this.category = category;
         this.dataSource = dataSource;
         this.listElement = listElement;
+        this.products = [];
     }
 
     async init() {
-        const list = await this.dataSource.getData(this.category);
-        this.renderList(list);
+       this.products = await this.dataSource.getData(this.category);
+        this.renderList(this.products); 
         document.querySelector(".title").textContent = this.category;
     }
     
     // call template function once for each product in the list, and insert it to the DOM
     renderList(list) {
-        renderListWithTemplate(productCartTemplate, this.listElement, list);
+        renderListWithTemplate(productCartTemplate, this.listElement, list, "afterbegin", true);
+    }
+    // sort the list of products based on the selected option, and then render the list
+     sortList(sortType) {
+        if (sortType === "price") {
+            this.products.sort((a, b) => a.FinalPrice - b.FinalPrice);
+        } else if (sortType === "name") {
+            this.products.sort((a, b) => a.Name.localeCompare(b.Name));
+        }
+        this.renderList(this.products);
     }
 }

@@ -15,7 +15,16 @@
     <main class="divider">
     <section class="products">
         <h2>Top Products: <span class="title highlight"></span></h2>
-        <ul class="product-list"></ul>
+        <!-- add sorting options -->
+<div class="product-list__sort">
+    <label for="sort">Sort by:</label>
+    <select name="sort" id="sort">
+        <option value="">Featured</option>
+        <option value="name">Name (A-Z)</option>
+        <option value="price">Price (Low to High)</option>
+    </select>
+</div>
+<ul class="product-list"></ul>
     </section>
     </main>
     <footer id="main-footer">

@@ -6,9 +6,13 @@ loadHeaderFooter();
 
 const category = getParam("category");
 const dataSource = new ProductData();
-const element = document.querySelector(".product-list");
+const element = document.querySelector(".product-list"); 
 const productList = new ProductList(category, dataSource, element);
 
 productList.init();
+const sortSelect = document.querySelector("#sort");
+sortSelect.addEventListener("change", (e) => {
+    productList.sortList(e.target.value);
+});
 
 // updateCartCount();

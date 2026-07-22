@@ -41,7 +41,7 @@ function productDetailsTemplate(product) {
     document.querySelector("h3").textContent = product.NameWithoutBrand;
 
     const productImg = document.getElementById("productImage");
-    productImg.src = product.Image;
+    productImg.src = product.Images.PrimaryLarge;
     productImg.alt = product.NameWithoutBrand;
 
     document.querySelector(".product-card__price").textContent = product.FinalPrice;

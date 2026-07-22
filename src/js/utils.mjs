@@ -25,14 +25,12 @@ export function setClick(selector, callback) {
 export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const product = urlParams.get("product");
-  return product;
+  return urlParams.get(param);
 }
 
-export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false)
-{
+export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
   const htmlStrings = list.map(templateFn);
-  
+
   if (clear) {
     parentElement.innerHTML = "";
   }
@@ -74,7 +72,7 @@ export function renderWithTemplate(template, parentElement, data, callback) {
 }
 
 async function loadTemplate(path) {
-  
+
   const response = await fetch(path);
   const template = await response.text();
   return template;

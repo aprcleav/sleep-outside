@@ -1,13 +1,9 @@
 import ProductDetails from "./ProductDetails.mjs";
 import ProductData from "./ProductData.mjs";
-import { getParam, updateCartCount, loadHeaderFooter } from "./utils.mjs";
+import { getParam } from "./utils.mjs";
 
-loadHeaderFooter();
-
-const dataSource = new ProductData("tents");
+const dataSource = new ProductData();
 const productId = getParam("product");
 
 const product = new ProductDetails(productId, dataSource);
 product.init();
-
-// updateCartCount();

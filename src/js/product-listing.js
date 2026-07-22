@@ -14,4 +14,3 @@ const sortSelect = document.querySelector("#sort");
 sortSelect.addEventListener("change", (e) => {
   productList.sortList(e.target.value);
 });
-

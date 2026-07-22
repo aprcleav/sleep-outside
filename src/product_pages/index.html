@@ -68,8 +68,44 @@
 
         <p class="product__description"></p>
 
+        <!-- Quantity selector used to choose how many units will be added to the cart -->
+        <div class="product-detail__quantity">
+          <label for="productQuantity">Quantity:</label>
+
+          <!-- Decrease the selected quantity without allowing values below one -->
+          <button
+            type="button"
+            id="decreaseQuantity"
+            class="quantity-button"
+            aria-label="Decrease quantity"
+          >
+            -
+          </button>
+
+          <!-- The user can also enter the desired quantity manually -->
+          <input
+            type="number"
+            id="productQuantity"
+            min="1"
+            value="1"
+            inputmode="numeric"
+            aria-label="Product quantity"
+          />
+
+          <!-- Increase the selected quantity -->
+          <button
+            type="button"
+            id="increaseQuantity"
+            class="quantity-button"
+            aria-label="Increase quantity"
+          >
+            +
+          </button>
+        </div>
+
+        <!-- Add the selected number of products to the cart -->
         <div class="product-detail__add">
-          <button id="addToCart" data-id="344YJ">Add to Cart</button>
+          <button id="addToCart" data-id="">Add to Cart</button>
         </div>
       </section>
     </main>

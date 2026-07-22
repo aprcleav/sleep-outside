@@ -26,7 +26,7 @@ function renderCartContents() {
           }
         }
       });
-      
+
       setLocalStorage("so-cart", updatedCartItems);
       renderCartContents();
       updateCartCount();
@@ -39,7 +39,10 @@ function renderCartContents() {
     const cartTotal = document.querySelector(".cart-total");
 
     if (cartItems.length > 0) {
-      const total = cartItems.reduce((sum, item) => sum + item.FinalPrice * item.quantity, 0);
+      const total = cartItems.reduce(
+        (sum, item) => sum + item.FinalPrice * item.quantity,
+        0,
+      );
       cartTotal.innerHTML = `Total: $${total.toFixed(2)}`;
       cartFooter.classList.remove("hide");
     } else {

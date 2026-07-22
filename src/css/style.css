@@ -309,6 +309,63 @@ button {
   font-weight: bold;
 }
 
+/* Start product quantity selector styles. Arrange the product-detail quantity label, buttons, and input in one row. */
+.product-detail__quantity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.product-detail__quantity label {
+  font-weight: bold;
+}
+
+#productQuantity {
+  width: 4rem;
+  padding: 0.5rem;
+  border: 1px solid var(--light-grey);
+  border-radius: 4px;
+  font: inherit;
+  text-align: center;
+}
+
+.quantity-button {
+  min-width: 2.25rem;
+  margin: 0;
+  padding: 0.35rem 0.65rem;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* End product quantity selector styles */
+
+/* Start cart quantity control styles */
+.cart-card__quantity {
+  grid-row: 3;
+  grid-column: 2 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.4rem;
+  padding: 0.5rem 0.75rem;
+}
+
+.quantity-value {
+  min-width: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.remove-button {
+  min-width: auto;
+  padding: 0.4rem 0.65rem;
+  font-size: var(--small-font);
+}
+
+/* End cart quantity control styles */
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;

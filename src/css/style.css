@@ -366,6 +366,53 @@ button {
 
 /* End cart quantity control styles */
 
+/* Checkout Page Styles */
+.order-summary {
+  padding: 20px;
+}
+
+form {
+  width: 400px;
+  padding: 20px;
+  & fieldset {
+    padding: 10px;
+    display: grid;
+  }
+  & legend {
+    padding: 10px;
+    font-weight: 600;
+  }
+    input[type="text"] {
+      padding: 5px;
+      margin: 5px;
+    }
+
+}
+
+#checkoutSubmit {
+  margin-top: 20px;
+}
+
+.alert {
+  margin: 10px 0 10px 0;
+  display: flex;
+  justify-content: space-between;
+  background-color:#e7c7bf;
+}
+
+#close-alert {
+  background-color: #e7c7bf;
+  color: var(--dark-grey);
+  margin: 0 10px 0;
+  padding: 0;
+}
+
+#close-alert:hover {
+  color: var(--tertiary-color);
+}
+
+/* End Checkout Page Styles */
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;

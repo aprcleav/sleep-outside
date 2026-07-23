@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { alertMessage, removeAllAlerts, getLocalStorage, setLocalStorage } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 // STEP 6 OF TEAM PROJECT NEEDS TO BE COMPLETED HERE
@@ -40,7 +40,7 @@ export default class CheckoutProcess {
   }
 
   init() {
-    this.list = getLocalStorage(this.key);
+    this.list = getLocalStorage(this.key) || [];
     this.calculateItemSubTotal();
   }
 
@@ -94,16 +94,23 @@ export default class CheckoutProcess {
         // populate the JSON order object with the order Date, orderTotal, tax, shipping, and list of items
 
         order.orderDate = new Date().toISOString();
-        order.orderTotal = this.orderTotal;
-        order.tax = this.tax;
+        order.orderTotal = this.orderTotal.toFixed(2);
+        order.tax = this.tax.toFixed(2);
         order.shipping = this.shipping;
         order.items = packageItems(this.list);
         console.log(order);
 
+
         try {
             const response = await services.checkout(order);
             console.log(response);
+            setLocalStorage("so-cart", []);
+            location.assign("/checkout/success.html");
         } catch (error) {
+            removeAllAlerts();
+            for (let message in error.message) {
+                alertMessage(error.message[message]);
+            }
             console.log(error);
         }
 

@@ -3,6 +3,7 @@ import {
     getLocalStorage,
     setLocalStorage,
     updateCartCount,
+    alertMessage
 } from "./utils.mjs";
 
 export default class ProductDetails {
@@ -96,6 +97,9 @@ export default class ProductDetails {
 
         // Save the updated cart and immediately refresh the cart badge.
         setLocalStorage("so-cart", cartItems);
+
+        // Alerts user that their item was added to the cart
+        alertMessage(`${this.product.NameWithoutBrand} added to cart!`, false);
         updateCartCount();
 
         // Reset the selector to one after adding the product.

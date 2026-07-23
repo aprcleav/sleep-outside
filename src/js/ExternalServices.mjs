@@ -24,4 +24,18 @@ export default class ExternalServices {
     console.log(data.Result);
     return data.Result;
   }
+
+  // Team activity 4
+  // call the checkout method in the ExternalServices module and send it the JSON order data.
+  async checkout(payload) {
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    };
+
+    return await fetch(`${baseURL}checkout/`, options).then(convertToJson);
+  }
 }

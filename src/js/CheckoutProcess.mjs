@@ -1,4 +1,32 @@
 import { getLocalStorage } from "./utils.mjs";
+import ExternalServices from "./ExternalServices.mjs";
+
+// STEP 6 OF TEAM PROJECT NEEDS TO BE COMPLETED HERE
+const services = new ExternalServices();
+
+function formDataToJSON(formElement) {
+    // convert form data to JSON object
+    const formData = new FormData(formElement);
+    const convertedJSON = {};
+    formData.forEach((value, key) => {
+        convertedJSON[key] = value;
+    });
+    return convertedJSON;
+}
+
+// takes the items currently stored in the cart (localstorage) and returns them in a simplified form.
+function packageItems(items) {
+    return items.map(item => ({
+        id: item.Id,
+        name: item.Name,
+        price: item.FinalPrice,
+        quantity: item.quantity
+    }));
+}
+  // convert the list of products from localStorage to the simpler form required for the checkout process.
+  // An Array.map would be perfect for this process.
+
+
 
 export default class CheckoutProcess {
   constructor(key, outputSelector) {
@@ -54,22 +82,30 @@ export default class CheckoutProcess {
 
     const orderTotal = document.querySelector(`${this.outputSelector} #order-total`);
     orderTotal.innerText = `$${this.orderTotal.toFixed(2)}`;
-  }
+    }
+    
+    // Team activity 4 step 6
+    async checkout(form) {
+        // get the form element data by the form name
+        // convert the form data to a JSON order object using the formDataToJSON function
+        const formElement = document.forms["checkout"];
 
+        const order = formDataToJSON(formElement);
+        // populate the JSON order object with the order Date, orderTotal, tax, shipping, and list of items
 
-// STEP 6 OF TEAM PROJECT NEEDS TO BE COMPLETED HERE
+        order.orderDate = new Date().toISOString();
+        order.orderTotal = this.orderTotal;
+        order.tax = this.tax;
+        order.shipping = this.shipping;
+        order.items = packageItems(this.list);
+        console.log(order);
 
+        try {
+            const response = await services.checkout(order);
+            console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
 
-  // takes the items currently stored in the cart (localstorage) and returns them in a simplified form.
-// function packageItems(items) {
-  // convert the list of products from localStorage to the simpler form required for the checkout process.
-  // An Array.map would be perfect for this process.
-
-  async checkout(form) {
-  // get the form element data by the form name
-  // convert the form data to a JSON order object using the formDataToJSON function
-  // populate the JSON order object with the order Date, orderTotal, tax, shipping, and list of items
-  // call the checkout method in the ExternalServices module and send it the JSON order data.
-        
-}
+    }
 }

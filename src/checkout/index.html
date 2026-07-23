@@ -70,20 +70,11 @@
     </label>
   </fieldset>
 
-  <button type="submit">Checkout</button>
+  <button type="submit" id="checkoutSubmit">Checkout</button>
 </form>
     </main>
     <footer id="main-footer"></footer>
-    <script type="module">
-  import CheckoutProcess from "../js/CheckoutProcess.mjs";
+    
 
-  const checkout = new CheckoutProcess("so-cart", ".order-summary");
-  checkout.init();
-
-  document.querySelector("#zip").addEventListener("blur", () => {
-    checkout.calculateOrderTotal();
-  });
-</script>
-</script>
   </body>
 </html>

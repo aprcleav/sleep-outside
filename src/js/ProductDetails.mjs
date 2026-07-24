@@ -3,7 +3,8 @@ import {
     getLocalStorage,
     setLocalStorage,
     updateCartCount,
-    alertMessage
+    alertMessage,
+    renderCategory
 } from "./utils.mjs";
 
 export default class ProductDetails {
@@ -25,6 +26,9 @@ export default class ProductDetails {
 
         // The product information must be loaded before rendering the page.
         this.renderProductDetails();
+
+        // Display category for breadcrumbs
+        renderCategory(this.product);
 
         // Decrease the selected quantity when the minus button is clicked.
         document

@@ -121,3 +121,23 @@ export function removeAllAlerts() {
   const alerts = document.querySelectorAll(".alert");
   alerts.forEach((alert) => document.querySelector("main").removeChild(alert));
 }
+
+// Add breadcrumb navigation for product list
+export function renderBreadcrumbs(products) {
+  const breadcrumbNav = document.createElement("div");
+  breadcrumbNav.classList.add("breadcrumb");
+  if (products) {
+    breadcrumbNav.innerHTML = `<p>${products[0].Category} → (${products.length} products)</p>`;
+    const main = document.querySelector("main");
+    main.prepend(breadcrumbNav);
+  } 
+}
+
+// Add breadcrumb category for single product
+export function renderCategory(product) {
+  const breadcrumbNav = document.createElement("div");
+  breadcrumbNav.classList.add("breadcrumb");
+  breadcrumbNav.innerHTML = `<p>${product.Category}</p>`;
+  const main = document.querySelector("main");
+  main.prepend(breadcrumbNav);
+}

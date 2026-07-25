@@ -1,80 +1,87 @@
 <!doctype html>
 
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8" />
 
-    <title>Sleep Outside | Checkout</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="/css/style.css" />
-    <script src="../js/checkout.js" type="module"></script>
-    
-  </head>
+  <title>Sleep Outside | Checkout</title>
 
-  <body>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="../js/checkout.js" type="module"></script>
+
+</head>
+
+<body>
   <header class="divider" id="main-header"></header>
 
-    <main class="divider">
-      <section class="products">
-        <h2>Review & Place your Order</h2>
-      </section>
-      <section class="order-summary">
+  <main class="divider">
+    <section class="products">
+      <h2>Review & Place your Order</h2>
+    </section>
+    <section class="order-summary">
 
-  <h3>Order Summary</h3>
-  <p>Number of Items: <span id="num-items"></span></p>
-  <p>Subtotal: <span id="cart-total"></span></p>
-  <p>Shipping: <span id="shipping"></span></p>
-  <p>Tax: <span id="tax"></span></p>
-  <p>Order Total: <span id="order-total"></span></p>
-</section>
+      <h3>Order Summary</h3>
+      <p>Number of Items: <span id="num-items"></span></p>
+      <p>Subtotal: <span id="cart-total"></span></p>
+      <p>Shipping: <span id="shipping"></span></p>
+      <p>Tax: <span id="tax"></span></p>
+      <p>Order Total: <span id="order-total"></span></p>
+    </section>
 
-<form id="checkout-form" name="checkout">
-  <fieldset>
-    <legend>Customer Information</legend>
-    <label for="fname">First Name
-      <input type="text" id="fname" name="fname" required />
-    </label>
-    <label for="lname">Last Name
-      <input type="text" id="lname" name="lname" required />
-    </label>
-  </fieldset>
+    <form id="checkout-form" name="checkout">
+      <fieldset>
+        <legend>Customer Information</legend>
+        <label for="fname">First Name
+          <input type="text" id="fname" name="fname" minlength="2" required />
+        </label>
+        <label for="lname">Last Name
+          <input type="text" id="lname" name="lname" minlength="2" required />
+        </label>
+      </fieldset>
 
-  <fieldset>
-    <legend>Address</legend>
-    <label for="street">Street Address
-      <input type="text" id="street" name="street" required />
-    </label>
-    <label for="city">City
-      <input type="text" id="city" name="city" required />
-    </label>
-    <label for="state">State
-      <input type="text" id="state" name="state" required />
-    </label>
-    <label for="zip">Zip Code
-      <input type="text" id="zip" name="zip" required />
-    </label>
-  </fieldset>
+      <fieldset>
+        <legend>Address</legend>
+        <label for="street">Street Address
+          <input type="text" id="street" name="street" required />
+        </label>
+        <label for="city">City
+          <input type="text" id="city" name="city" required />
+        </label>
+        <label for="state">State
+          <input type="text" id="state" name="state" maxlength="2" placeholder="ID" required />
+        </label>
+        <label for="zip">Zip Code
+          <input type="text" id="zip" name="zip" inputmode="numeric" pattern="[0-9]{5}" title="Enter a 5-digit ZIP code"
+            required />
+        </label>
+      </fieldset>
 
-  <fieldset>
-    <legend>Payment Information</legend>
-    <label for="cardNumber">Card Number
-      <input type="text" id="cardNumber" name="cardNumber" required />
-    </label>
-    <label for="expiration">Expiration
-      <input type="text" id="expiration" name="expiration" required />
-    </label>
-    <label for="code">Security Code
-      <input type="text" id="code" name="code" required />
-    </label>
-  </fieldset>
+      <fieldset>
+        <legend>Payment Information</legend>
+        <label for="cardNumber">Card Number
+          <input type="text" id="cardNumber" name="cardNumber" inputmode="numeric" pattern="[0-9]{16}" maxlength="16"
+            title="Enter a 16-digit card number" required />
+        </label>
+        <label for="expiration">Expiration
+          <input type="text" id="expiration" name="expiration" placeholder="MM/YY" pattern="(0[1-9]|1[0-2])\/[0-9]{2}"
+            title="Enter the expiration date as MM/YY" required />
+        </label>
+        <label for="code">Security Code
+          <input type="text" id="code" name="code" inputmode="numeric" pattern="[0-9]{3}" maxlength="3"
+            title="Enter a 3-digit security code" required />
+        </label>
+      </fieldset>
 
-  <button type="submit">Checkout</button>
-</form>
-    </main>
-    <footer id="main-footer"></footer>
-    
+      <button type="submit" id="checkoutSubmit">
+        Checkout</button>
+    </form>
+  </main>
+  <footer id="main-footer"></footer>
 
-  </body>
+
+</body>
+
 </html>

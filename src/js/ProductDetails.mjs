@@ -80,7 +80,8 @@ export default class ProductDetails {
         // Check whether this product already exists in the cart.
         const existingItem = cartItems.find(
             (cartItem) => cartItem.Id === this.product.Id,
-        );
+        )
+
 
         if (existingItem) {
             // Add the selected amount to the quantity already in the cart.
@@ -97,7 +98,9 @@ export default class ProductDetails {
         // Save the updated cart and immediately refresh the cart badge.
         setLocalStorage("so-cart", cartItems);
         updateCartCount();
-
+        alertMessage(`${this.product.NameWithoutBrand} was added to your cart.`,
+      false,
+    );
         // Reset the selector to one after adding the product.
         document.getElementById("productQuantity").value = 1;
     }

@@ -93,3 +93,44 @@ export async function loadHeaderFooter() {
   renderWithTemplate(headerTemplate, headerElement, updateCartCount);
   renderWithTemplate(footerTemplate, footerElement, updateCartCount);
 }
+
+export function alertMessage(message, scroll = true) {
+  const existingAlert = document.querySelector(".alert-message");
+
+  if (existingAlert) {
+    existingAlert.remove();
+  }
+
+  const alert = document.createElement("div");
+  alert.classList.add("alert-message");
+
+  alert.innerHTML = `
+    <p>${message}</p>
+    <button
+      type="button"
+      class="alert-close"
+      aria-label="Close message"
+    >
+      &times;
+    </button>
+  `;
+
+  const main = document.querySelector("main");
+
+  if (main) {
+    main.insertAdjacentElement("afterbegin", alert);
+  }
+
+  const closeButton = alert.querySelector(".alert-close");
+
+  closeButton.addEventListener("click", () => {
+    alert.remove();
+  });
+
+  if (scroll) {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+}

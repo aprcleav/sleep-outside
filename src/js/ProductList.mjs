@@ -1,4 +1,4 @@
-import { renderListWithTemplate } from "./utils.mjs";
+import { renderListWithTemplate, renderBreadcrumbs } from "./utils.mjs";
 
 function productCartTemplate(product) {
     return `<li class="product-card">
@@ -23,6 +23,11 @@ export default class ProductList {
        this.products = await this.dataSource.getData(this.category);
         this.renderList(this.products); 
         document.querySelector(".title").textContent = this.category;
+        console.log(this.products);
+
+        // Display breadcrumbs
+        renderBreadcrumbs(this.products);
+
     }
     
     // call template function once for each product in the list, and insert it to the DOM
@@ -36,6 +41,7 @@ export default class ProductList {
         } else if (sortType === "name") {
             this.products.sort((a, b) => a.Name.localeCompare(b.Name));
         }
-        this.renderList(this.products);
+         this.renderList(this.products);
+         
     }
 }

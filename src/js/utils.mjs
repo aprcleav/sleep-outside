@@ -93,3 +93,51 @@ export async function loadHeaderFooter() {
   renderWithTemplate(headerTemplate, headerElement, updateCartCount);
   renderWithTemplate(footerTemplate, footerElement, updateCartCount);
 }
+
+// Creates error message if user inputs invalid form data
+export function alertMessage(message, scroll = true, duration = 3000) {
+  const alert = document.createElement("div");
+  alert.classList.add("alert");
+  alert.innerHTML = `<p>${message}</p><button id="close-alert">X</span>`
+
+  alert.addEventListener("click", function (e) {
+    if (e.target.tagName == "SPAN") {
+      main.removeChild(this);
+    }
+  });
+
+  const main = document.querySelector("main");
+  main.prepend(alert);
+  if (scroll) window.scrollTo(0, 0);
+
+  // Remove alert if X is clicked
+  const closeAlert = document.querySelector("#close-alert");
+  closeAlert.addEventListener("click", () => {
+    document.querySelector("main").removeChild(alert);
+  });
+}
+
+export function removeAllAlerts() {
+  const alerts = document.querySelectorAll(".alert");
+  alerts.forEach((alert) => document.querySelector("main").removeChild(alert));
+}
+
+// Add breadcrumb navigation for product list
+export function renderBreadcrumbs(products) {
+  const breadcrumbNav = document.createElement("div");
+  breadcrumbNav.classList.add("breadcrumb");
+  if (products) {
+    breadcrumbNav.innerHTML = `<p>${products[0].Category} → (${products.length} products)</p>`;
+    const main = document.querySelector("main");
+    main.prepend(breadcrumbNav);
+  } 
+}
+
+// Add breadcrumb category for single product
+export function renderCategory(product) {
+  const breadcrumbNav = document.createElement("div");
+  breadcrumbNav.classList.add("breadcrumb");
+  breadcrumbNav.innerHTML = `<p>${product.Category}</p>`;
+  const main = document.querySelector("main");
+  main.prepend(breadcrumbNav);
+}

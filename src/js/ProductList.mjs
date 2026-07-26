@@ -3,7 +3,12 @@ import { renderListWithTemplate, renderBreadcrumbs } from "./utils.mjs";
 function productCartTemplate(product) {
     return `<li class="product-card">
         <a href="../product_pages/?product=${product.Id}">
-            <img src="${product.Images.PrimaryMedium}" alt="Image of ${product.Name}">
+            <picture>
+    <source media="(max-width: 575px)" srcset="${product.Images.PrimarySmall}">
+    <source media="(max-width: 991px)" srcset="${product.Images.PrimaryMedium}">
+    <source media="(min-width: 992px)" srcset="${product.Images.PrimaryLarge}">
+    <img src="${product.Images.PrimaryMedium}" alt="Image of ${product.Name}">
+</picture>
             <h2 class="card__brand">${product.Brand.Name}</h2>
             <h3 class="card__name">${product.NameWithoutBrand}</h3>
             <p class="product-card__price">$${product.FinalPrice}</p>

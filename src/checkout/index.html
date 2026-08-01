@@ -10,71 +10,76 @@
 
     <link rel="stylesheet" href="/css/style.css" />
     <script src="../js/checkout.js" type="module"></script>
-    
   </head>
 
   <body>
-  <header class="divider" id="main-header"></header>
+    <header class="divider" id="main-header"></header>
 
     <main class="divider">
       <section class="products">
         <h2>Review & Place your Order</h2>
       </section>
       <section class="order-summary">
+        <h3>Order Summary</h3>
+        <p>Number of Items: <span id="num-items"></span></p>
+        <p>Subtotal: <span id="cart-total"></span></p>
+        <p>Shipping: <span id="shipping"></span></p>
+        <p>Tax: <span id="tax"></span></p>
+        <p>Order Total: <span id="order-total"></span></p>
+      </section>
 
-  <h3>Order Summary</h3>
-  <p>Number of Items: <span id="num-items"></span></p>
-  <p>Subtotal: <span id="cart-total"></span></p>
-  <p>Shipping: <span id="shipping"></span></p>
-  <p>Tax: <span id="tax"></span></p>
-  <p>Order Total: <span id="order-total"></span></p>
-</section>
+      <form id="checkout-form" name="checkout">
+        <fieldset>
+          <legend>Customer Information</legend>
+          <label for="fname"
+            >First Name
+            <input type="text" id="fname" name="fname" required />
+          </label>
+          <label for="lname"
+            >Last Name
+            <input type="text" id="lname" name="lname" required />
+          </label>
+        </fieldset>
 
-<form id="checkout-form" name="checkout">
-  <fieldset>
-    <legend>Customer Information</legend>
-    <label for="fname">First Name
-      <input type="text" id="fname" name="fname" required />
-    </label>
-    <label for="lname">Last Name
-      <input type="text" id="lname" name="lname" required />
-    </label>
-  </fieldset>
+        <fieldset>
+          <legend>Address</legend>
+          <label for="street"
+            >Street Address
+            <input type="text" id="street" name="street" required />
+          </label>
+          <label for="city"
+            >City
+            <input type="text" id="city" name="city" required />
+          </label>
+          <label for="state"
+            >State
+            <input type="text" id="state" name="state" required />
+          </label>
+          <label for="zip"
+            >Zip Code
+            <input type="text" id="zip" name="zip" required />
+          </label>
+        </fieldset>
 
-  <fieldset>
-    <legend>Address</legend>
-    <label for="street">Street Address
-      <input type="text" id="street" name="street" required />
-    </label>
-    <label for="city">City
-      <input type="text" id="city" name="city" required />
-    </label>
-    <label for="state">State
-      <input type="text" id="state" name="state" required />
-    </label>
-    <label for="zip">Zip Code
-      <input type="text" id="zip" name="zip" required />
-    </label>
-  </fieldset>
+        <fieldset>
+          <legend>Payment Information</legend>
+          <label for="cardNumber"
+            >Card Number
+            <input type="text" id="cardNumber" name="cardNumber" required />
+          </label>
+          <label for="expiration"
+            >Expiration
+            <input type="text" id="expiration" name="expiration" required />
+          </label>
+          <label for="code"
+            >Security Code
+            <input type="text" id="code" name="code" required />
+          </label>
+        </fieldset>
 
-  <fieldset>
-    <legend>Payment Information</legend>
-    <label for="cardNumber">Card Number
-      <input type="text" id="cardNumber" name="cardNumber" required />
-    </label>
-    <label for="expiration">Expiration
-      <input type="text" id="expiration" name="expiration" required />
-    </label>
-    <label for="code">Security Code
-      <input type="text" id="code" name="code" required />
-    </label>
-  </fieldset>
-
-  <button type="submit" id="checkoutSubmit">Checkout</button>
-</form>
+        <button type="submit" id="checkoutSubmit">Checkout</button>
+      </form>
     </main>
     <footer id="main-footer"></footer>
-    
-
   </body>
 </html>

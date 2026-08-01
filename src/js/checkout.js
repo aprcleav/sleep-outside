@@ -9,16 +9,15 @@ const order = new CheckoutProcess("so-cart", ".order-summary");
 order.init();
 
 document.querySelector("#zip").addEventListener("blur", () => {
-    order.calculateOrderTotal();
+  order.calculateOrderTotal();
 });
 
 document.querySelector("#checkoutSubmit").addEventListener("click", (e) => {
-    e.preventDefault();
-    const myForm = document.forms[0];
-    const checkStatus = myForm.checkValidity();
-    myForm.reportValidity();
-    if (checkStatus) {
-        order.checkout();
-    }
+  e.preventDefault();
+  const myForm = document.forms[0];
+  const checkStatus = myForm.checkValidity();
+  myForm.reportValidity();
+  if (checkStatus) {
+    order.checkout();
+  }
 });
-

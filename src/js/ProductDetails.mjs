@@ -105,9 +105,88 @@ export default class ProductDetails {
         // Alerts user that their item was added to the cart
         alertMessage(`${this.product.NameWithoutBrand} added to cart!`, false);
         updateCartCount();
+        this.animateProductToCart();
 
         // Reset the selector to one after adding the product.
         document.getElementById("productQuantity").value = 1;
+    }
+
+    animateProductToCart() {
+        const addButton = document.getElementById("addToCart");
+        const cart = document.querySelector(".cart");
+        const cartTarget = document.querySelector(".cart svg") || cart;
+
+        // Stop if one of the required elements is not available.
+        if (!addButton || !cart || !cartTarget) {
+            return;
+        }
+
+        const bumpCart = () => {
+            // Remove and re-add the class so repeated clicks restart the animation.
+            cart.classList.remove("cart-bump");
+            void cart.offsetWidth;
+            cart.classList.add("cart-bump");
+
+            cart.addEventListener(
+                "animationend",
+                () => cart.classList.remove("cart-bump"),
+                { once: true },
+            );
+        };
+
+        // Respect the user's reduced-motion accessibility preference.
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            return;
+        }
+
+        const buttonPosition = addButton.getBoundingClientRect();
+        const cartPosition = cartTarget.getBoundingClientRect();
+
+        const startX = buttonPosition.left + buttonPosition.width / 2;
+        const startY = buttonPosition.top + buttonPosition.height / 2;
+        const endX = cartPosition.left + cartPosition.width / 2;
+        const endY = cartPosition.top + cartPosition.height / 2;
+
+        // Create the temporary orange item that travels to the backpack.
+        const flyingItem = document.createElement("span");
+        flyingItem.classList.add("cart-fly-item");
+        flyingItem.setAttribute("aria-hidden", "true");
+        flyingItem.style.left = `${startX - 9}px`;
+        flyingItem.style.top = `${startY - 9}px`;
+        document.body.appendChild(flyingItem);
+
+        const distanceX = endX - startX;
+        const distanceY = endY - startY;
+
+        const animation = flyingItem.animate(
+            [
+                {
+                    transform: "translate(0, 0) scale(1)",
+                    opacity: 1,
+                },
+                {
+                    transform: `translate(${distanceX * 0.5}px, ${distanceY * 0.5 - 60
+                        }px) scale(0.8)`,
+                    opacity: 1,
+                    offset: 0.55,
+                },
+                {
+                    transform: `translate(${distanceX}px, ${distanceY}px) scale(0.25)`,
+                    opacity: 0.2,
+                },
+            ],
+            {
+                duration: 650,
+                easing: "cubic-bezier(0.45, 0, 0.2, 1)",
+            },
+        );
+
+        animation.finished
+            .then(() => {
+                flyingItem.remove();
+                bumpCart();
+            })
+            .catch(() => flyingItem.remove());
     }
 
     renderProductDetails() {

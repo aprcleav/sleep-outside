@@ -1,32 +1,26 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sleep Outside | Home</title>
-    <link rel="stylesheet" href="/css/style.css" />
-    <script src="js/main.js" type="module"></script>
-  </head>
 
-  <body>
-    <header class="divider" id="main-header"></header>
-    <main class="divider">
-      <div class="hero">
-        <img
-          src="/images/banner-sm.jpg"
-          srcset="images/banner-sm.jpg 500w, images/banner.jpg"
-          alt="image of a high mountain lake"
-        />
-        <div class="logo logo--square">
-          <img src="/images/noun_Tent_2517.svg" alt="tent image for logo" />
-          <div>Sleep<span class="highlight">Outside</span></div>
-        </div>
-        <div class="mission">
-          <p>
-            Our mission is to provide you with everything you need to sleep
-            outside comfortably at an affordable price.
-          </p>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sleep Outside | Home</title>
+
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="js/main.js" type="module"></script>
+</head>
+
+<body>
+  <header class="divider" id="main-header"></header>
+
+  <main class="divider">
+    <div class="hero">
+      <img src="/images/banner-sm.jpg" srcset="images/banner-sm.jpg 500w, images/banner.jpg"
+        alt="image of a high mountain lake" />
+
+      <div class="logo logo--square">
+        <img src="/images/noun_Tent_2517.svg" alt="tent image for logo" />
+        <div>Sleep<span class="highlight">Outside</span></div>
       </div>
       <div class="product-categories">
         <a href="product_listing/index.html?category=tents">
@@ -62,3 +56,74 @@
     <footer id="main-footer"></footer>
   </body>
 </html>
+
+      <div class="mission">
+        <p>
+          Our mission is to provide you with everything you need to sleep
+          outside comfortably at an affordable price.
+        </p>
+      </div>
+    </div>
+
+    <!-- Product Categories -->
+    <div class="product-categories">
+      <a href="product_listing/index.html?category=tents">
+        <img src="/images/categories/category-tents.svg" alt="Tents" width="100" />
+      </a>
+
+      <a href="product_listing/index.html?category=backpacks">
+        <img src="/images/categories/category-backpacks.svg" alt="Backpacks" width="100" />
+      </a>
+
+      <a href="product_listing/index.html?category=sleeping-bags">
+        <img src="/images/categories/category-sleepingbags.svg" alt="Sleeping Bags" width="100" />
+      </a>
+
+      <a href="product_listing/index.html?category=hammocks">
+        <img src="/images/categories/category-hammocks.svg" alt="Hammocks" width="100" />
+      </a>
+    </div>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+      <h2>Sign Up for Our Newsletter</h2>
+
+      <p>
+        Stay up to date with our newest products, promotions, and outdoor
+        tips.
+      </p>
+
+      <form id="newsletter-form">
+        <label for="newsletter-email">Email Address</label>
+
+        <input type="email" id="newsletter-email" name="email" placeholder="name@example.com" required />
+
+        <button type="submit">Subscribe</button>
+      </form>
+    </section>
+
+    <!-- First Visit Registration Modal -->
+    <div id="welcome-modal" class="modal hidden">
+      <div class="modal-content">
+        <button id="close-modal" class="close-btn" aria-label="Close">
+          &times;
+        </button>
+
+        <h2>Join Sleep Outside!</h2>
+
+        <p>
+          Register today and enter our Outdoor Gear Giveaway! Create an
+          account to receive exclusive deals, outdoor tips, and a chance to
+          win camping equipment.
+        </p>
+
+        <a href="#" class="register-btn">Register Now</a>
+      </div>
+    </div>
+  </main>
+
+  <footer id="main-footer"></footer>
+</body>
+
+</html>
+
